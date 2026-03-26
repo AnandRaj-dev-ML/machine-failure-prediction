@@ -16,6 +16,14 @@ DATASET_PATH = "hf://datasets/Rajanan/machine-failure-prediction/machine-failure
 df = pd.read_csv(DATASET_PATH)
 print("Dataset loaded successfully.")
 
+print(df.columns.tolist())
+
+#df.columns = (
+#    df.columns
+#      .str.strip()
+#      .str.replace(" ", "_")
+#)
+
 # Drop the unique identifier
 df.drop(columns=['UDI'], inplace=True)
 

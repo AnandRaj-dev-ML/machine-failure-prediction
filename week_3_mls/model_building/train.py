@@ -35,11 +35,11 @@ ytest = pd.read_csv(ytest_path)
 
 # One-hot encode 'Type' and scale numeric features
 numeric_features = [
-    'Air_temperature',
-    'Process_temperature',
-    'Rotational_speed',
+    'Air temperature',
+    'Process temperature',
+    'Rotational speed',
     'Torque',
-    'Tool_wear'
+    'Tool wear'
 ]
 categorical_features = ['Type']
 
@@ -58,13 +58,11 @@ preprocessor = make_column_transformer(
 xgb_model = xgb.XGBClassifier(scale_pos_weight=class_weight, random_state=42)
 
 # Define hyperparameter grid
+
 param_grid = {
-    'xgbclassifier__n_estimators': [50, 75, 100],
-    'xgbclassifier__max_depth': [2, 3, 4],
-    'xgbclassifier__colsample_bytree': [0.4, 0.5, 0.6],
-    'xgbclassifier__colsample_bylevel': [0.4, 0.5, 0.6],
-    'xgbclassifier__learning_rate': [0.01, 0.05, 0.1],
-    'xgbclassifier__reg_lambda': [0.4, 0.5, 0.6],
+    "xgbclassifier__n_estimators": [50, 100],
+    "xgbclassifier__max_depth": [3, 4],
+    "xgbclassifier__learning_rate": [0.05, 0.1],
 }
 
 # Model pipeline
@@ -127,7 +125,7 @@ with mlflow.start_run():
     print(f"Model saved as artifact at: {model_path}")
 
     # Upload to Hugging Face
-    repo_id = "Rajanan/machine_failure_model" 
+    repo_id = "Rajanan/machine_failure_model"
     repo_type = "model"
 
     # Step 1: Check if the space exists
